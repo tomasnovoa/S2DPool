@@ -7,7 +7,7 @@ public class Bola : MonoBehaviour
     [HideInInspector] public Vector2 velocity = Vector2.zero;
     [HideInInspector] public bool isWhite = false; // si es la bola blanca
 
-    // Para lectura rápida del transform
+    // Para lectura rï¿½pida del transform
     private Transform _t;
 
     void Awake()
@@ -21,9 +21,14 @@ public class Bola : MonoBehaviour
         set => _t.position = value;
     }
 
-    // Método de utilidad para asignar velocidad y opcionalmente ajustar visual
+    // Mï¿½todo de utilidad para asignar velocidad y opcionalmente ajustar visual
     public void SetVelocity(Vector2 v)
     {
         velocity = v;
+    }
+      public void OnDrawGizmosSelected() 
+    {
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireSphere(transform.position, radius);
     }
 }

@@ -1,12 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 public class UIManager : MonoBehaviour
 {
     private GameManager gm;
 
     [Header("UI")]
-    public Text uiSpeedText;
-    public Text uiAngleText;
+    public TextMeshProUGUI uiSpeedText;
+    public TextMeshProUGUI  uiAngleText;
     public LineRenderer aimLine;
 
     public void Init(GameManager manager) => gm = manager;
@@ -21,7 +22,7 @@ public class UIManager : MonoBehaviour
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
         if (uiSpeedText) uiSpeedText.text = $"Vel: {speed:F2}";
-        if (uiAngleText) uiAngleText.text = $"Ang: {angle:F1}°";
+        if (uiAngleText) uiAngleText.text = $"Ang: {angle:F1}ï¿½";
 
         if (aimLine)
         {
@@ -48,8 +49,11 @@ public class UIManager : MonoBehaviour
         {
             float sp = gm.whiteBall.velocity.magnitude;
             float ang = Mathf.Atan2(gm.whiteBall.velocity.y, gm.whiteBall.velocity.x) * Mathf.Rad2Deg;
-            if (uiSpeedText) uiSpeedText.text = $"White Vel: {sp:F2}";
-            if (uiAngleText) uiAngleText.text = $"White Ang: {ang:F1}°";
+            if (uiSpeedText) uiSpeedText.text = $"Speed: {sp:F2}";
+            if (uiAngleText) uiAngleText.text = $"Angle: {ang:F1}ï¿½";
         }
     }
+
+  
+
 }
