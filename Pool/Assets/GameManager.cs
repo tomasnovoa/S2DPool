@@ -37,13 +37,13 @@ public class GameManager : MonoBehaviour
 
     void SetupScene()
     {
-        balls.Clear();
+        bolas.Clear();
 
         // Bola blanca
         GameObject wgo = Instantiate(whiteBallPrefab, Vector3.zero, Quaternion.identity);
         whiteBall = wgo.GetComponent<Bola>();
         whiteBall.isWhite = true;
-        balls.Add(whiteBall);
+        bolas.Add(whiteBall);
 
         // Bolas extra
         for (int i = 0; i < extraBalls; i++)
@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
             Vector2 pos = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
             GameObject go = Instantiate(ballPrefab, pos, Quaternion.identity);
             Bola ball = go.GetComponent<Bola>();
-            balls.Add(ball);
+            bolas.Add(ball);
 
             // velocidad inicial aleatoria
             float sp = Random.Range(0.5f, 2.0f);
@@ -60,4 +60,4 @@ public class GameManager : MonoBehaviour
         }
     }
 }
-}
+
