@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class Bola : MonoBehaviour
 {
-    [Header("Propiedades")]
-    public float radius = 0.25f;   // radio en unidades
+  
+    public float radio = 0.25f;   
     [HideInInspector] public Vector2 velocity = Vector2.zero;
-    [HideInInspector] public bool isWhite = false; // si es la bola blanca
+    [HideInInspector] public bool esblanca = false; 
 
-    // Para lectura r�pida del transform
+    
     private Transform _t;
 
     void Awake()
@@ -21,7 +21,7 @@ public class Bola : MonoBehaviour
         set => _t.position = value;
     }
 
-    // M�todo de utilidad para asignar velocidad y opcionalmente ajustar visual
+  
     public void SetVelocity(Vector2 v)
     {
         velocity = v;
@@ -29,6 +29,6 @@ public class Bola : MonoBehaviour
       public void OnDrawGizmosSelected() 
     {
         Gizmos.color = Color.white;
-        Gizmos.DrawWireSphere(transform.position, radius);
+        Gizmos.DrawWireSphere(transform.position, radio);
     }
 }

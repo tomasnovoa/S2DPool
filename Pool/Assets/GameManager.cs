@@ -4,20 +4,20 @@ using UnityEngine.SocialPlatforms;
 
 public class GameManager : MonoBehaviour
 {
-    [Header("Prefabs y Conteo")]
-    public GameObject whiteBallPrefab;
-    public GameObject ballPrefab;
-    public int extraBalls = 15;
+    
+    public GameObject bola_blanca;
+    public GameObject bola_Normal;
+    public int numeroBolas = 15;
 
-    [Header("Mesa (límites)")]
+    
     public float minX = -8f, maxX = 8f, minY = -4.5f, maxY = 4.5f;
 
-    [Header("Referencias a Managers")]
+    
     public InputManager inputManager;
     public PhysicsManager physicsManager;
     public UIManager uiManager;
 
-    [HideInInspector] public Bola whiteBall;
+    [HideInInspector] public Bola blanca;
     [HideInInspector] public List<Bola> bolas = new List<Bola>();
 
     void Start()
@@ -30,8 +30,8 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        inputManager.HandleInput();
-        physicsManager.StepPhysics(Time.deltaTime);
+        inputManager.Inputs();
+        physicsManager.SeteoPhysics(Time.deltaTime);
         uiManager.SyncUI();
     }
 
@@ -39,25 +39,27 @@ public class GameManager : MonoBehaviour
     {
         bolas.Clear();
 
-        // Bola blanca
-        GameObject wgo = Instantiate(whiteBallPrefab, Vector3.zero, Quaternion.identity);
-        whiteBall = wgo.GetComponent<Bola>();
-        whiteBall.isWhite = true;
-        bolas.Add(whiteBall);
+        
+        GameObject wgo = Instantiate(bola_blanca, Vector3.zero, Quaternion.identity);
+        blanca = wgo.GetComponent<Bola>();
+        blanca.esblanca = true;
+        bolas.Add(blanca);
 
-        // Bolas extra
-        for (int i = 0; i < extraBalls; i++)
+        
+        for (int i = 0; i < numeroBolas; i++)
         {
             Vector2 pos = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
-            GameObject go = Instantiate(ballPrefab, pos, Quaternion.identity);
+            GameObject go = Instantiate(bola_Normal, pos, Quaternion.identity);
             Bola ball = go.GetComponent<Bola>();
             bolas.Add(ball);
 
-            // velocidad inicial aleatoria
-            float sp = Random.Range(0.5f, 2.0f);
-            float ang = Random.Range(0f, Mathf.PI * 2f);
-            ball.velocity = new Vector2(Mathf.Cos(ang), Mathf.Sin(ang)) * sp;
+            
+            float velocidadInicial = Random.Range(0.5f, 2.0f);
+            float angulo = Random.Range(0f, Mathf.PI * 2f);
+            ball.velocity = new Vector2(Mathf.Cos(angulo), Mathf.Sin(angulo)) * velocidadInicial;
         }
     }
+
+   
 }
 
